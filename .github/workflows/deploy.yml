@@ -1,0 +1,32 @@
+name: Deploy Chatbot App
+
+on:
+  push:
+    branches:
+      - main  # Change to 'master' if your branch is master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies (Backend)
+        run: |
+          cd chat-backend
+          npm install
+
+      - name: Install Dependencies (Frontend)
+        run: |
+          cd chat-frontend
+          npm install
+
+      - name: Deploy to Server (Example for AWS)
+        run: |
+          ssh user@your-server "cd /app/chatbot && git pull && pm2 restart all"
