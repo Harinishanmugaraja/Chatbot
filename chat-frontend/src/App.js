@@ -18,7 +18,7 @@ function App() {
     const sendMessage = () => {
         if (input.trim() !== "") {
             const userMessage = { sender: "User", text: input };
-            setMessages([...messages, userMessage]); // Show user message immediately
+            //setMessages([...messages, userMessage]); // Show user message immediately
             socket.emit("sendMessage", input); // Send to backend
             setInput("");
         }
